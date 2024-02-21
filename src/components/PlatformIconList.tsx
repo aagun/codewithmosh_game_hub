@@ -6,8 +6,11 @@ import {FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaGlobe} from "react
 import { MdOutlinePhoneIphone, MdOutlineAndroid } from "react-icons/md";
 import { BsNintendoSwitch } from "react-icons/bs";
 
+interface Props {
+	platforms: Platform[];
+}
 
-const PlatformIconList = ({platforms}: { platforms: Platform[] }) => {
+const PlatformIconList = ({platforms}: Props) => {
 	const iconMap: {[key: string]: IconType} = {
 		pc: FaWindows,
 		playstation: FaPlaystation,

@@ -6,20 +6,25 @@ import GenreList from "./components/GenreList.tsx";
 function App() {
 
 	return (
-		<Grid templateAreas={{
-			base: `"nav" "main"`,
-			lg: `"nav nav" "aside main"`,
-		}}>
-			<GridItem area="nav" >
-				<NavBar />
+		<Grid
+			templateAreas={{
+				base: `"nav" "main"`,
+				lg: `"nav nav" "aside main"`,
+			}}
+			templateColumns={{
+				base: "1fr",
+				lg: "200px 1fr"
+			}}>
+			<GridItem area="nav">
+				<NavBar/>
 			</GridItem>
 			<Show above="lg">
-				<GridItem area="aside">
+				<GridItem area="aside" px={5}>
 					<GenreList/>
 				</GridItem>
 			</Show>
 			<GridItem area="main">
-				<GameGrid />
+				<GameGrid/>
 			</GridItem>
 		</Grid>
 	)

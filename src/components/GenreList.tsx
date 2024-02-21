@@ -1,10 +1,13 @@
-import useGenres, {Genre} from "../hooks/useGenres.ts";
+import {Genre} from "../hooks/useGenres.ts";
 import {ReactNode} from "react";
 import {HStack, Image, List, ListItem, Text} from "@chakra-ui/react";
 import getCroppedImage from "../services/image-url.ts";
 
-const GenreList = () => {
-	const {data: genres} = useGenres();
+interface Props {
+	genres: Genre[]
+}
+
+const GenreList = ({genres}: Props) => {
 	return (
 		<List>
 			{genres.map((genre: Genre): ReactNode =>
@@ -13,7 +16,7 @@ const GenreList = () => {
 						<Image
 							boxSize="32px"
 							borderRadius="8px"
-							src={getCroppedImage(genre.image_background)} />
+							src={getCroppedImage(genre.image_background)}/>
 						<Text fontSize="lg">{genre.name}</Text>
 					</HStack>
 				</ListItem>

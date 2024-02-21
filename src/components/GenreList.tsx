@@ -1,8 +1,8 @@
-import useGenres, {Genre, UseGenre} from "../hooks/useGenres.ts";
+import useGenres, {Genre} from "../hooks/useGenres.ts";
 import {ReactNode} from "react";
 
 const GenreList = () => {
-	const {genres}: UseGenre = useGenres();
+	const {data: genres} = useGenres();
 	return (
 		<ul>
 			{genres.map((genre: Genre): ReactNode => <li key={genre.id}>{genre.name}</li>)}

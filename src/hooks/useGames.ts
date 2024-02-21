@@ -3,10 +3,17 @@ import apiClient from "../services/api-client.ts";
 import {RAWGResponse} from "../components/GameGrid.tsx";
 import {AxiosRequestConfig, AxiosResponse, CanceledError} from "axios";
 
+export interface Platform {
+	id: number;
+	name: string;
+	slug: string;
+}
+
 export interface Game {
 	id: number;
 	name: string;
 	background_image: string;
+	parent_platforms: {platform: Platform}[]
 }
 
 export interface UseGames {

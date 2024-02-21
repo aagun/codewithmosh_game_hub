@@ -6,6 +6,7 @@ import {AxiosRequestConfig, AxiosResponse, CanceledError} from "axios";
 export interface Game {
 	id: number;
 	name: string;
+	background_image: string;
 }
 
 export interface UseGames {

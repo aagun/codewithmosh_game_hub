@@ -2,6 +2,8 @@ import {ReactNode} from "react";
 import {SimpleGrid, Text} from "@chakra-ui/react";
 import useGames, {Game, UseGames} from "../hooks/useGames.ts";
 import GameCard from "./GameCard.tsx";
+import GameCardSkeleton from "./GameCardSkeleton.tsx";
+import GameCardContainer from "./GameCardContainer.tsx";
 
 export interface RAWGResponse<T> {
 	count: number;
@@ -11,14 +13,23 @@ export interface RAWGResponse<T> {
 }
 
 const GameGrid = () => {
-	const {error, games}: UseGames = useGames();
+	const {error, games, isLoading}: UseGames = useGames();
+	const skeletons: number[] = [1,2,3,4,5,6];
 
 	return (
 		<>
 			{error && <Text color="red.500">{error}</Text>}
-			<SimpleGrid columns={{sm: 1, md: 2, lg: 3, xl: 5}} spacing={10} p="10px">
+			<SimpleGrid columns={{sm: 1, md: 2, lg: 3, xl:5}} spacing={10} p="10px">
+				{isLoading && skeletons.map((skeleton: number): ReactNode =>
+					<GameCardContainer key={skeleton}>
+						<GameCardSkeleton/>
+					</GameCardContainer>
+				)}
+
 				{games.map((game: Game): ReactNode =>
-					<GameCard key={game.id} game={game} />
+					<GameCardContainer key={game.id}>
+						<GameCard game={game}/>
+					</GameCardContainer>
 				)}
 			</SimpleGrid>
 		</>

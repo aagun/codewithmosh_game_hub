@@ -19,28 +19,33 @@ export interface Game {
 
 export interface UseGames {
 	games: Game[];
-	error: string
+	error: string;
+	isLoading: boolean;
 }
 
 const useGames = (): UseGames => {
 	const controller: AbortController = new AbortController();
 	const [games, setGames] = useState<Game[]>([]);
 	const [error, setError] = useState<string>('');
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		const config: AxiosRequestConfig = {signal: controller.signal}
+
+		setIsLoading(true);
 
 		apiClient.get<RAWGResponse<Game>>("/games", config)
 			.then((res: AxiosResponse<RAWGResponse<Game>>) => setGames(res.data.results))
 			.catch(err => {
 				if (err instanceof CanceledError) return;
 				setError(err.message);
-			});
+			})
+			.finally((): void => setIsLoading(false));
 
-		return () => controller.abort();
+		// return () => controller.abort();
 	}, []);
 
-	return {games, error}
+	return {games, error, isLoading}
 }
 
 export default useGames;

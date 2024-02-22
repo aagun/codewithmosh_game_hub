@@ -1,7 +1,7 @@
 import useData, {UseDataProps} from "./useData.ts";
 
 export interface Platform {
-	id: number;
+	id?: number;
 	name: string;
 	slug: string;
 }

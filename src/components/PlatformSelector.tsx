@@ -2,13 +2,15 @@ import {Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import {FaChevronDown} from "react-icons/fa6";
 import usePlatforms, {Platform} from "../hooks/usePlatforms.tsx";
 import {ReactNode} from "react";
+import {UseDataProps} from "../hooks/useData.ts";
 
 interface Props {
 	selectedPlatform: Platform | null;
 	onSelectedPlatform: (platform: Platform) => void;
 }
 const PlatformSelector = ({onSelectedPlatform, selectedPlatform}: Props) => {
-	const {error, data: platforms} = usePlatforms();
+	const {error, data}: UseDataProps<Platform> = usePlatforms();
+	const platforms: Platform[] = [{name: "All Platforms", slug: "" }, ...data];
 
 	if (error) return <></>;
 

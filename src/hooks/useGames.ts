@@ -1,6 +1,6 @@
 import useData, {UseDataProps} from "./useData.ts";
-import {Genre} from "./useGenres.ts";
 import {Platform} from "./usePlatforms.tsx";
+import {GameQuery} from "../App.tsx";
 
 export interface Game {
 	id: number;
@@ -10,25 +10,14 @@ export interface Game {
 	metacritic: number;
 }
 
-export interface UseGames {
-	games: Game[];
-	error: string;
-	isLoading: boolean;
-}
-
-interface Props {
-	selectedGenre: Genre | null;
-	selectedPlatform: Platform | null;
-}
-
-const useGames = ({selectedGenre, selectedPlatform}: Props): UseDataProps<Game> => useData<Game>(
+const useGames = (gameQuery: GameQuery): UseDataProps<Game> => useData<Game>(
 	"/games",
 	{
 		params: {
-			genres: selectedGenre?.id,
-			parent_platforms: selectedPlatform?.id
+			genres: gameQuery?.genre,
+			parent_platforms: gameQuery?.platform
 		}
 	},
-	[selectedGenre?.id, selectedPlatform?.id]);
+	[gameQuery]);
 
 export default useGames;

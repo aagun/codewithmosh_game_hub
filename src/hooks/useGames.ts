@@ -16,9 +16,19 @@ export interface UseGames {
 	isLoading: boolean;
 }
 
-const useGames = (selectedGenre: Genre | null): UseDataProps<Game> => useData<Game>(
+interface Props {
+	selectedGenre: Genre | null;
+	selectedPlatform: Platform | null;
+}
+
+const useGames = ({selectedGenre, selectedPlatform}: Props): UseDataProps<Game> => useData<Game>(
 	"/games",
-	{params: {genres: selectedGenre?.id}},
-		[selectedGenre?.id]);
+	{
+		params: {
+			genres: selectedGenre?.id,
+			parent_platforms: selectedPlatform?.id
+		}
+	},
+	[selectedGenre?.id, selectedPlatform?.id]);
 
 export default useGames;

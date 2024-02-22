@@ -7,6 +7,7 @@ interface Props {
 	onSelectedGenre: (genres: Genre) => void;
 	selectedGenre: Genre | null;
 }
+
 const GenreListContainer = ({selectedGenre, onSelectedGenre}: Props) => {
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	const {error, data, isLoading} = useGenres();

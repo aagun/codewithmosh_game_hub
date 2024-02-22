@@ -3,7 +3,11 @@ import {FaChevronDown} from "react-icons/fa6";
 import usePlatforms, {Platform} from "../hooks/usePlatforms.tsx";
 import {ReactNode} from "react";
 
-const PlatformSelector = () => {
+interface Props {
+	selectedPlatform: Platform | null;
+	onSelectedPlatform: (platform: Platform) => void;
+}
+const PlatformSelector = ({onSelectedPlatform, selectedPlatform}: Props) => {
 	const {error, data: platforms} = usePlatforms();
 
 	if (error) return <></>;
@@ -11,10 +15,13 @@ const PlatformSelector = () => {
 	return (
 		<Menu>
 			<MenuButton as={Button} rightIcon={<FaChevronDown/>}>
-				Platforms
+				{selectedPlatform ? selectedPlatform?.name: "Platforms"}
 			</MenuButton>
 			<MenuList>
-				{platforms.map((platform: Platform): ReactNode => <MenuItem key={platform.id}>{platform.name}</MenuItem>)}
+				{platforms.map((platform: Platform): ReactNode =>
+					<MenuItem key={platform.id} onClick={() => onSelectedPlatform(platform)}>
+						{platform.name}
+					</MenuItem>)}
 			</MenuList>
 		</Menu>
 	)

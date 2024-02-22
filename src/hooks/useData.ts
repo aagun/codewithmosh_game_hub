@@ -39,7 +39,7 @@ const useData = <T>(endpoint: string,
 			})
 			.finally((): void => setIsLoading(false));
 
-		return () => controller.abort();
+		// return () => controller.abort();
 	}, deps ? [...deps] : []);
 
 	return {data, error, isLoading}

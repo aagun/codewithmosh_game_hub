@@ -5,8 +5,9 @@ import GenreListSkeleton from "./GenreListSkeleton.tsx";
 
 interface Props {
 	onSelectedGenre: (genres: Genre) => void;
+	selectedGenre: Genre | null;
 }
-const GenreListContainer = ({onSelectedGenre}: Props) => {
+const GenreListContainer = ({selectedGenre, onSelectedGenre}: Props) => {
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	const {error, data, isLoading} = useGenres();
 
@@ -16,7 +17,10 @@ const GenreListContainer = ({onSelectedGenre}: Props) => {
 		<Box>
 			{isLoading
 				? <GenreListSkeleton skeletons={skeletons}/>
-				: <GenreList genres={data} onSelectedGenre={onSelectedGenre}/>
+				: <GenreList
+					genres={data}
+					selectedGenre={selectedGenre}
+					onSelectedGenre={onSelectedGenre}/>
 			}
 		</Box>
 	);

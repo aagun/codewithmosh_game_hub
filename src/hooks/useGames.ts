@@ -1,4 +1,5 @@
 import useData, {UseDataProps} from "./useData.ts";
+import {Genre} from "./useGenres.ts";
 
 export interface Platform {
 	id: number;
@@ -20,6 +21,9 @@ export interface UseGames {
 	isLoading: boolean;
 }
 
-const useGames = (): UseDataProps<Game> => useData<Game>("/games");
+const useGames = (selectedGenre: Genre | null): UseDataProps<Game> => useData<Game>(
+	"/games",
+	{params: {genres: selectedGenre?.id}},
+		[selectedGenre?.id]);
 
 export default useGames;

@@ -15,18 +15,23 @@ export interface RAWGResponse<T> {
 	previous: string;
 }
 
-const useData = <T>(url: string): UseDataProps<T> => {
+const useData = <T>(endpoint: string,
+										requestConfig?: AxiosRequestConfig,
+										deps?: any[]): UseDataProps<T> => {
 	const controller: AbortController = new AbortController();
 	const [data, setData] = useState<T[]>([]);
 	const [error, setError] = useState<string>('');
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		const config: AxiosRequestConfig = {signal: controller.signal}
+		const config: AxiosRequestConfig = {
+			...requestConfig,
+			signal: controller.signal
+		}
 
 		setIsLoading(true);
 
-		apiClient.get<RAWGResponse<T>>(url, config)
+		apiClient.get<RAWGResponse<T>>(endpoint, config)
 			.then((res: AxiosResponse<RAWGResponse<T>>) => setData(res.data.results))
 			.catch(err => {
 				if (err instanceof CanceledError) return;
@@ -34,8 +39,8 @@ const useData = <T>(url: string): UseDataProps<T> => {
 			})
 			.finally((): void => setIsLoading(false));
 
-		// return () => controller.abort();
-	}, []);
+		return () => controller.abort();
+	}, deps ? [...deps] : []);
 
 	return {data, error, isLoading}
 }

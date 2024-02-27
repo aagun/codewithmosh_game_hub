@@ -1,5 +1,5 @@
 import {HStack, Icon} from "@chakra-ui/react";
-import {Platform} from "../hooks/useGames.ts";
+import {Platform} from "../hooks/usePlatforms";
 import {ReactNode} from "react";
 import {IconType} from "react-icons";
 import {FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaGlobe} from "react-icons/fa6";

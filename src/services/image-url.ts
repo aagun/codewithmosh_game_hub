@@ -1,5 +1,5 @@
 const getCroppedImage = (url: string): string => {
-	if (!url) return "";
+	if (!url) return "https://placehold.co/600x400";
 
 	const target: string = "media/";
 	const index: number = url.indexOf(target) + target.length;

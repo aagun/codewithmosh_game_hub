@@ -16,7 +16,8 @@ const useGames = (gameQuery: GameQuery): UseDataProps<Game> => useData<Game>(
 		params: {
 			genres: gameQuery?.genre,
 			parent_platforms: gameQuery?.platform,
-			ordering: gameQuery.sortOrder?.value
+			ordering: gameQuery.sortOrder?.value,
+			search: gameQuery.searchText
 		}
 	},
 	[gameQuery]);

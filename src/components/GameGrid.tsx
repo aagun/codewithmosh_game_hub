@@ -5,13 +5,14 @@ import GameCard from "./GameCard.tsx";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import GameCardContainer from "./GameCardContainer.tsx";
 import {GameQuery} from "../App.tsx";
+import {UseDataProps} from "../hooks/useData.ts";
 
 interface Props {
 	gameQuery: GameQuery;
 }
 
 const GameGrid = ({gameQuery}: Props) => {
-	const {error, data: games, isLoading} = useGames(gameQuery);
+	const {error, data: games, isLoading}: UseDataProps<Game> = useGames(gameQuery);
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6];
 
 	return (

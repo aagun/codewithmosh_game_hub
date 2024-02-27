@@ -27,7 +27,10 @@ To run the project locally, follow these steps:
     npm install
     ```
 
-3. Run the development server:
+3. Register to https://rawg.io get your API key and change the API key in file `./src/api-client.ts` with yours.
+
+
+4. Run the development server:
 
     ```bash
     npm start dev

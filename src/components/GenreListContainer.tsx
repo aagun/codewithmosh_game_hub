@@ -11,7 +11,7 @@ interface Props {
 
 const GenreListContainer = ({selectedGenre, onSelectedGenre}: Props): JSX.Element => {
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-	const {error, data, isPaused: isLoading} = useGenres();
+	const {error, data, isLoading} = useGenres();
 
 	if (error) return <Box/>
 

@@ -27,7 +27,8 @@ const useGames = (gameQuery: GameQuery): UseInfiniteQueryResult<InfiniteData<RAW
 		}),
 		initialPageParam: 1,
 		getNextPageParam: (lastPage: RAWGResponse<Game>, allPages: RAWGResponse<Game>[],): number | undefined =>
-			lastPage.next ? allPages.length + 1 : undefined
+			lastPage.next ? allPages.length + 1 : undefined,
+		staleTime: 24 * 60 * 60 * 1000
 	});
 
 export default useGames;

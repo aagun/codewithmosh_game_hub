@@ -1,5 +1,5 @@
-import {Fragment, JSX, ReactNode} from "react";
-import {Box, Button, SimpleGrid, Text} from "@chakra-ui/react";
+import {Fragment, JSX, ReactNode, useEffect} from "react";
+import {Box, Flex, SimpleGrid, Spinner, Text} from "@chakra-ui/react";
 import useGames, {Game} from "../hooks/useGames.ts";
 import GameCard from "./GameCard.tsx";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
@@ -7,23 +7,30 @@ import GameCardContainer from "./GameCardContainer.tsx";
 import {GameQuery} from "../App.tsx";
 import {InfiniteData, UseInfiniteQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
+import {InViewHookResponse, useInView} from "react-intersection-observer";
 
 interface Props {
 	gameQuery: GameQuery;
 }
 
 const GameGrid = ({gameQuery}: Props): JSX.Element => {
+	const {ref, inView}: InViewHookResponse = useInView();
 	const {
 		error,
 		data,
 		isLoading,
-		hasNextPage,
 		fetchNextPage,
 		isFetchingNextPage
 	}: UseInfiniteQueryResult<InfiniteData<RAWGResponse<Game>, number>, Error> = useGames(gameQuery);
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6];
 
 	if (error) return <Text color="red.500">{error.message}</Text>;
+
+	useEffect((): void => {
+		if (inView) {
+			fetchNextPage().then();
+		}
+	}, [fetchNextPage, inView])
 
 	return (
 		<Box p="10px">
@@ -46,12 +53,14 @@ const GameGrid = ({gameQuery}: Props): JSX.Element => {
 					)
 				}
 			</SimpleGrid>
-			{
-				hasNextPage &&
-				<Button my={5} onClick={() => fetchNextPage()}>
-					{isFetchingNextPage ? "Loading..." : "Load More"}
-				</Button>
-			}
+
+			<Flex
+				ref={ref}
+				width="100%"
+				my={5}
+				justifyContent="center">
+				{isFetchingNextPage && <Spinner size="lg"/>}
+			</Flex>
 		</Box>
 	);
 };

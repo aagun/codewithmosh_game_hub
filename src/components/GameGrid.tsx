@@ -5,8 +5,8 @@ import GameCard from "./GameCard.tsx";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import GameCardContainer from "./GameCardContainer.tsx";
 import {GameQuery} from "../App.tsx";
-import {RAWGResponse} from "../hooks/useData.ts";
 import {UseQueryResult} from "@tanstack/react-query";
+import {RAWGResponse} from "../services/api-client.ts";
 
 interface Props {
 	gameQuery: GameQuery;

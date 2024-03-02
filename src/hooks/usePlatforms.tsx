@@ -1,7 +1,6 @@
-import {RAWGResponse} from "./useData.ts";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {AxiosResponse} from "axios";
-import apiClient from "../services/api-client.ts";
+import apiClient, {RAWGResponse} from "../services/api-client.ts";
 
 export interface Platform {
 	id?: number;

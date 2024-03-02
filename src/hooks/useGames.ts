@@ -1,9 +1,8 @@
-import {RAWGResponse} from "./useData.ts";
 import {Platform} from "./usePlatforms.tsx";
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {GameQuery} from "../App.tsx";
 import {AxiosResponse} from "axios";
-import apiClient from "../services/api-client.ts";
+import apiClient, {RAWGResponse} from "../services/api-client.ts";
 
 export interface Game {
 	id: number;

@@ -18,8 +18,8 @@ const useGames = (gameQuery: GameQuery): UseInfiniteQueryResult<InfiniteData<RAW
 		queryKey: ["games", gameQuery],
 		queryFn: ({pageParam}) => apiClient.getAll({
 			params: {
-				genres: gameQuery?.genre,
-				parent_platforms: gameQuery?.platform,
+				genres: gameQuery?.genreId,
+				parent_platforms: gameQuery?.platformId,
 				ordering: gameQuery.sortOrder?.value,
 				search: gameQuery.searchText,
 				page: pageParam

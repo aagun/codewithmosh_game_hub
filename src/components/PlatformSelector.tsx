@@ -6,20 +6,21 @@ import {UseQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
 
 interface Props {
-	selectedPlatform: Platform | null;
+	selectedPlatformId?: number;
 	onSelectedPlatform: (platform: Platform) => void;
 }
 
-const PlatformSelector = ({onSelectedPlatform, selectedPlatform}: Props) => {
+const PlatformSelector = ({onSelectedPlatform, selectedPlatformId}: Props) => {
 	const {error, data}: UseQueryResult<RAWGResponse<Platform>> = usePlatforms();
 	const platforms: Platform[] = [{name: "All Platforms", slug: ""}, ...(data?.results || [])];
+	const platform: Platform | undefined = platforms.find((platform: Platform) => platform.id === selectedPlatformId);
 
 	if (error) return <></>;
 
 	return (
 		<Menu>
 			<MenuButton as={Button} rightIcon={<FaChevronDown/>}>
-				{selectedPlatform ? selectedPlatform?.name : "Platforms"}
+				{selectedPlatformId ? platform?.name : "Platforms"}
 			</MenuButton>
 			<MenuList>
 				{platforms.map((platform: Platform): ReactNode =>

@@ -7,11 +7,11 @@ import {UseQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
 
 interface Props {
-	onSelectedGenre: (genres: Genre) => void;
-	selectedGenre: Genre | null;
+	selectedGenreId?: number;
+	onSelectedGenre: (genre: Genre) => void;
 }
 
-const GenreListContainer = ({selectedGenre, onSelectedGenre}: Props): JSX.Element => {
+const GenreListContainer = ({selectedGenreId, onSelectedGenre}: Props): JSX.Element => {
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	const {error, data, isLoading}: UseQueryResult<RAWGResponse<Genre>> = useGenres();
 
@@ -23,7 +23,7 @@ const GenreListContainer = ({selectedGenre, onSelectedGenre}: Props): JSX.Elemen
 				? <GenreListSkeleton skeletons={skeletons}/>
 				: <GenreList
 					genres={data?.results || []}
-					selectedGenre={selectedGenre}
+					selectedGenreId={selectedGenreId}
 					onSelectedGenre={onSelectedGenre}/>
 			}
 		</Box>

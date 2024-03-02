@@ -23,14 +23,14 @@ const GameGrid = ({gameQuery}: Props): JSX.Element => {
 		isFetchingNextPage
 	}: UseInfiniteQueryResult<InfiniteData<RAWGResponse<Game>, number>, Error> = useGames(gameQuery);
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6];
-
-	if (error) return <Text color="red.500">{error.message}</Text>;
-
 	useEffect((): void => {
 		if (inView) {
 			fetchNextPage().then();
 		}
 	}, [fetchNextPage, inView])
+
+
+	if (error) return <Text color="red.500">{error.message}</Text>;
 
 	return (
 		<Box p="10px">
@@ -59,7 +59,7 @@ const GameGrid = ({gameQuery}: Props): JSX.Element => {
 				width="100%"
 				my={5}
 				justifyContent="center">
-				{isFetchingNextPage && <Spinner size="lg"/>}
+				{isFetchingNextPage && <Spinner size="xl"/>}
 			</Flex>
 		</Box>
 	);

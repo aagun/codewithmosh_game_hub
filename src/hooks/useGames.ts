@@ -2,6 +2,7 @@ import {Platform} from "./usePlatforms.tsx";
 import {InfiniteData, useInfiniteQuery, UseInfiniteQueryResult} from "@tanstack/react-query";
 import {GameQuery} from "../App.tsx";
 import APIClient, {RAWGResponse} from "../services/api-client.ts";
+import ms from "ms";
 
 export interface Game {
 	id: number;
@@ -28,7 +29,7 @@ const useGames = (gameQuery: GameQuery): UseInfiniteQueryResult<InfiniteData<RAW
 		initialPageParam: 1,
 		getNextPageParam: (lastPage: RAWGResponse<Game>, allPages: RAWGResponse<Game>[],): number | undefined =>
 			lastPage.next ? allPages.length + 1 : undefined,
-		staleTime: 24 * 60 * 60 * 1000
+		staleTime: ms("1d")
 	});
 
 export default useGames;

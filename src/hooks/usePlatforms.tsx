@@ -1,5 +1,6 @@
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import APIClient, {RAWGResponse} from "../services/api-client.ts";
+import ms from "ms";
 
 export interface Platform {
 	id?: number;
@@ -12,7 +13,7 @@ const apiClient: APIClient<Platform> = new APIClient<Platform>("/platforms/lists
 const usePlatforms = (): UseQueryResult<RAWGResponse<Platform>, Error> => useQuery<RAWGResponse<Platform>, Error>({
 	queryKey: ["platforms"],
 	queryFn: apiClient.getAll,
-	staleTime: 24 * 60 * 60 * 1000
+	staleTime: ms("1d")
 });
 
 export default usePlatforms;

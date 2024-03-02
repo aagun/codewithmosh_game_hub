@@ -2,15 +2,16 @@ import {Box} from "@chakra-ui/react";
 import GenreList from "./GenreList.tsx";
 import useGenres, {Genre} from "../hooks/useGenres.ts";
 import GenreListSkeleton from "./GenreListSkeleton.tsx";
+import {JSX} from "react";
 
 interface Props {
 	onSelectedGenre: (genres: Genre) => void;
 	selectedGenre: Genre | null;
 }
 
-const GenreListContainer = ({selectedGenre, onSelectedGenre}: Props) => {
+const GenreListContainer = ({selectedGenre, onSelectedGenre}: Props): JSX.Element => {
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-	const {error, data, isLoading} = useGenres();
+	const {error, data, isPaused: isLoading} = useGenres();
 
 	if (error) return <Box/>
 
@@ -19,7 +20,7 @@ const GenreListContainer = ({selectedGenre, onSelectedGenre}: Props) => {
 			{isLoading
 				? <GenreListSkeleton skeletons={skeletons}/>
 				: <GenreList
-					genres={data}
+					genres={data?.results || []}
 					selectedGenre={selectedGenre}
 					onSelectedGenre={onSelectedGenre}/>
 			}

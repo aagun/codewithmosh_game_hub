@@ -13,7 +13,7 @@ interface Props {
 const PlatformSelector = ({onSelectedPlatform, selectedPlatformId}: Props) => {
 	const {error, data}: UseQueryResult<RAWGResponse<Platform>> = usePlatforms();
 	const platforms: Platform[] = [{name: "All Platforms", slug: ""}, ...(data?.results || [])];
-	const platform: Platform | undefined = platforms.find((platform: Platform) => platform.id === selectedPlatformId);
+	const platform: Platform | undefined = platforms.find((platform: Platform): boolean => platform.id === selectedPlatformId);
 
 	if (error) return <></>;
 

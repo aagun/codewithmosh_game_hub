@@ -1,9 +1,9 @@
 import {Heading} from "@chakra-ui/react";
 import {GameQuery} from "../App.tsx";
-import useGenres, {Genre} from "../hooks/useGenres.ts";
-import {RAWGResponse} from "../services/api-client.ts";
-import {UseQueryResult} from "@tanstack/react-query";
-import usePlatforms, {Platform} from "../hooks/usePlatforms.tsx";
+import {Genre} from "../hooks/useGenres.ts";
+import {Platform} from "../hooks/usePlatforms.tsx";
+import usePlatform from "../hooks/usePlatform.tsx";
+import useGenre from "../hooks/useGenre.tsx";
 
 interface Props {
 	gameQuery: GameQuery;
@@ -11,10 +11,8 @@ interface Props {
 
 const GameHeading = ({gameQuery}: Props) => {
 	const {platformId, genreId}: GameQuery = gameQuery
-	const {data: platforms}: UseQueryResult<RAWGResponse<Platform>> = usePlatforms();
-	const {data: genres}: UseQueryResult<RAWGResponse<Genre>> = useGenres();
-	const genre: Genre| undefined = genres?.results.find((g: Genre) => g.id == genreId);
-	const platform: Platform| undefined = platforms?.results.find((platform: Platform) => platform.id == platformId);
+	const genre: Genre | undefined = useGenre(genreId);
+	const platform: Platform | undefined = usePlatform(platformId);
 
 	const name: string = `${platform?.name || ""} ${genre?.name || ""}`;
 	return (

@@ -11,7 +11,7 @@ interface Props {
 
 const GameAttributes = ({game}: Props) => {
 	return (
-		<SimpleGrid columns={2}>
+		<SimpleGrid columns={2} as="dl">
 			<DefinitionItem term="Platforms">
 				{
 					game.parent_platforms?.map(({platform}) =>

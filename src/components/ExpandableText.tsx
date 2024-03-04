@@ -1,12 +1,14 @@
 import {Button, Text} from "@chakra-ui/react";
-import {JSX, useState} from "react";
+import {Dispatch, JSX, SetStateAction, useState} from "react";
+
+type UseStateType<T> = [T, Dispatch<SetStateAction<T>>]
 
 interface Props {
 	children: string;
 }
 
 const ExpandableText = ({children}: Props): JSX.Element => {
-	const [expanded, setExpanded] = useState(false);
+	const [expanded, setExpanded]: UseStateType<boolean> = useState(false);
 	const limit: number = 300;
 
 	if (!children) return <></>;

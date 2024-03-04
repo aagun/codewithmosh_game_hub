@@ -1,6 +1,7 @@
 import {UseQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
-import useGenres, {Genre} from "./useGenres.ts";
+import useGenres from "./useGenres.ts";
+import {Genre} from "../entities/Genre.ts";
 
 const useGenre = (id?: number): Genre | undefined => {
 	const {data: genres}: UseQueryResult<RAWGResponse<Genre>> = useGenres();

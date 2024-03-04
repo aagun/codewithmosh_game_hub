@@ -2,7 +2,8 @@ import {useParams} from "react-router-dom";
 import useGame from "../hooks/useGame.tsx";
 import {Heading, Spinner, Text} from "@chakra-ui/react";
 import {UseQueryResult} from "@tanstack/react-query";
-import {Game} from "../hooks/useGames.ts";
+
+import {Game} from "../entities/Game.ts";
 
 const GameDetailPage = () => {
 	const {slug} = useParams();

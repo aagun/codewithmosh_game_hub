@@ -1,10 +1,10 @@
 import {HStack, Icon} from "@chakra-ui/react";
-import {Platform} from "../hooks/usePlatforms.ts";
 import {ReactNode} from "react";
 import {IconType} from "react-icons";
-import {FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaGlobe} from "react-icons/fa6";
-import { MdOutlinePhoneIphone, MdOutlineAndroid } from "react-icons/md";
-import { BsNintendoSwitch } from "react-icons/bs";
+import {FaApple, FaGlobe, FaLinux, FaPlaystation, FaWindows, FaXbox} from "react-icons/fa6";
+import {MdOutlineAndroid, MdOutlinePhoneIphone} from "react-icons/md";
+import {BsNintendoSwitch} from "react-icons/bs";
+import {Platform} from "../entities/Platform.ts";
 
 interface Props {
 	platforms: Platform[];

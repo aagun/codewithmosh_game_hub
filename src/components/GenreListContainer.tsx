@@ -1,10 +1,11 @@
 import {Box} from "@chakra-ui/react";
 import GenreList from "./GenreList.tsx";
-import useGenres, {Genre} from "../hooks/useGenres.ts";
+import useGenres from "../hooks/useGenres.ts";
 import GenreListSkeleton from "./GenreListSkeleton.tsx";
 import {JSX} from "react";
 import {UseQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
+import {Genre} from "../entities/Genre.ts";
 
 const GenreListContainer = (): JSX.Element => {
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

@@ -1,10 +1,11 @@
 import {Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import {FaChevronDown} from "react-icons/fa6";
-import usePlatforms, {Platform} from "../hooks/usePlatforms.ts";
+import usePlatforms from "../hooks/usePlatforms.ts";
 import {JSX, ReactNode} from "react";
 import {UseQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
 import useGameQueryStore, {GameQueryStore} from "../store.ts";
+import {Platform} from "../entities/Platform.ts";
 
 const PlatformSelector = (): JSX.Element => {
 	const {error, data}: UseQueryResult<RAWGResponse<Platform>> = usePlatforms();

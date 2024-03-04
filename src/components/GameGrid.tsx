@@ -1,12 +1,13 @@
 import {Fragment, JSX, ReactNode, useEffect} from "react";
 import {Box, Flex, SimpleGrid, Spinner, Text} from "@chakra-ui/react";
-import useGames, {Game} from "../hooks/useGames.ts";
+import useGames from "../hooks/useGames.ts";
 import GameCard from "./GameCard.tsx";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import GameCardContainer from "./GameCardContainer.tsx";
 import {InfiniteData, UseInfiniteQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
 import {InViewHookResponse, useInView} from "react-intersection-observer";
+import {Game} from "../entities/Game.ts";
 
 const GameGrid = (): JSX.Element => {
 	const {ref, inView}: InViewHookResponse = useInView();

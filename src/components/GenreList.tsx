@@ -1,8 +1,8 @@
-import {Genre} from "../hooks/useGenres.ts";
 import {ReactNode} from "react";
 import {Button, Heading, HStack, Image, List, ListItem} from "@chakra-ui/react";
 import getCroppedImage from "../services/image-url.ts";
 import useGameQueryStore, {GameQueryStore} from "../store.ts";
+import {Genre} from "../entities/Genre.ts";
 
 interface Props {
 	genres: Genre[];

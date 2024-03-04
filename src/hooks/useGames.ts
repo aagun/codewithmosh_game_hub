@@ -7,6 +7,8 @@ import useGameQueryStore, {GameQuery, GameQueryStore} from "../store.ts";
 export interface Game {
 	id: number;
 	name: string;
+	description_raw: string;
+	slug: string;
 	background_image: string;
 	parent_platforms: { platform: Platform }[];
 	metacritic: number;

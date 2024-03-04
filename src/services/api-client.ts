@@ -23,6 +23,9 @@ class APIClient<T> {
 
 	getAll = (config: AxiosRequestConfig) => axiosInstance.get<RAWGResponse<T>>(this.endpoint, config)
 		.then((response: AxiosResponse<RAWGResponse<T>>) => response.data);
+
+	get = (id: number | string) => axiosInstance.get<T>(this.endpoint + "/" + id)
+		.then((response: AxiosResponse<T>) => response.data)
 }
 
 export default APIClient;

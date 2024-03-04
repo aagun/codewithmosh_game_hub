@@ -1,8 +1,8 @@
-import {Platform} from "./usePlatforms.tsx";
+import {Platform} from "./usePlatforms.ts";
 import {InfiniteData, useInfiniteQuery, UseInfiniteQueryResult} from "@tanstack/react-query";
-import {GameQuery} from "../App.tsx";
 import APIClient, {RAWGResponse} from "../services/api-client.ts";
 import ms from "ms";
+import useGameQueryStore, {GameQuery, GameQueryStore} from "../store.ts";
 
 export interface Game {
 	id: number;
@@ -14,14 +14,16 @@ export interface Game {
 
 const apiClient: APIClient<Game> = new APIClient<Game>("/games");
 
-const useGames = (gameQuery: GameQuery): UseInfiniteQueryResult<InfiniteData<RAWGResponse<Game>, number>, Error> =>
-	useInfiniteQuery<RAWGResponse<Game>, Error, InfiniteData<RAWGResponse<Game>, number>>({
+const useGames = (): UseInfiniteQueryResult<InfiniteData<RAWGResponse<Game>, number>, Error> => {
+	const gameQuery: GameQuery = useGameQueryStore((s: GameQueryStore) => s.gameQuery);
+
+	return useInfiniteQuery<RAWGResponse<Game>, Error, InfiniteData<RAWGResponse<Game>, number>>({
 		queryKey: ["games", gameQuery],
 		queryFn: ({pageParam}) => apiClient.getAll({
 			params: {
 				genres: gameQuery?.genreId,
 				parent_platforms: gameQuery?.platformId,
-				ordering: gameQuery.sortOrder?.value,
+				ordering: gameQuery.sortOrder,
 				search: gameQuery.searchText,
 				page: pageParam
 			}
@@ -31,5 +33,6 @@ const useGames = (gameQuery: GameQuery): UseInfiniteQueryResult<InfiniteData<RAW
 			lastPage.next ? allPages.length + 1 : undefined,
 		staleTime: ms("1d")
 	});
+}
 
 export default useGames;

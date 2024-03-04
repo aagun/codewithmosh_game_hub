@@ -3,7 +3,7 @@ import APIClient, {RAWGResponse} from "../services/api-client.ts";
 import ms from "ms";
 
 export interface Platform {
-	id?: number;
+	id: number;
 	name: string;
 	slug: string;
 }

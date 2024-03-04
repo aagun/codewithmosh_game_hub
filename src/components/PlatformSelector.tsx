@@ -1,19 +1,19 @@
 import {Button, Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import {FaChevronDown} from "react-icons/fa6";
-import usePlatforms, {Platform} from "../hooks/usePlatforms.tsx";
-import {ReactNode} from "react";
+import usePlatforms, {Platform} from "../hooks/usePlatforms.ts";
+import {JSX, ReactNode} from "react";
 import {UseQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
+import useGameQueryStore, {GameQueryStore} from "../store.ts";
 
-interface Props {
-	selectedPlatformId?: number;
-	onSelectedPlatform: (platform: Platform) => void;
-}
-
-const PlatformSelector = ({onSelectedPlatform, selectedPlatformId}: Props) => {
+const PlatformSelector = (): JSX.Element => {
 	const {error, data}: UseQueryResult<RAWGResponse<Platform>> = usePlatforms();
-	const platforms: Platform[] = [{name: "All Platforms", slug: ""}, ...(data?.results || [])];
+	const platforms: Platform[] = [...(data?.results || [])];
+
+	const selectedPlatformId: number | undefined = useGameQueryStore((s: GameQueryStore) => s.gameQuery.platformId);
 	const platform: Platform | undefined = platforms.find((platform: Platform): boolean => platform.id === selectedPlatformId);
+
+	const setSelectedPlatformId = useGameQueryStore((s: GameQueryStore) => s.setPlatformId);
 
 	if (error) return <></>;
 
@@ -24,7 +24,7 @@ const PlatformSelector = ({onSelectedPlatform, selectedPlatformId}: Props) => {
 			</MenuButton>
 			<MenuList>
 				{platforms.map((platform: Platform): ReactNode =>
-					<MenuItem key={platform.id || platform.name} onClick={() => onSelectedPlatform(platform)}>
+					<MenuItem key={platform.id || platform.name} onClick={() => setSelectedPlatformId(platform.id)}>
 						{platform.name}
 					</MenuItem>)}
 			</MenuList>

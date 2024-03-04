@@ -4,16 +4,11 @@ import useGames, {Game} from "../hooks/useGames.ts";
 import GameCard from "./GameCard.tsx";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import GameCardContainer from "./GameCardContainer.tsx";
-import {GameQuery} from "../App.tsx";
 import {InfiniteData, UseInfiniteQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
 import {InViewHookResponse, useInView} from "react-intersection-observer";
 
-interface Props {
-	gameQuery: GameQuery;
-}
-
-const GameGrid = ({gameQuery}: Props): JSX.Element => {
+const GameGrid = (): JSX.Element => {
 	const {ref, inView}: InViewHookResponse = useInView();
 	const {
 		error,
@@ -21,7 +16,7 @@ const GameGrid = ({gameQuery}: Props): JSX.Element => {
 		isLoading,
 		fetchNextPage,
 		isFetchingNextPage
-	}: UseInfiniteQueryResult<InfiniteData<RAWGResponse<Game>, number>, Error> = useGames(gameQuery);
+	}: UseInfiniteQueryResult<InfiniteData<RAWGResponse<Game>, number>, Error> = useGames();
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6];
 	useEffect((): void => {
 		if (inView) {

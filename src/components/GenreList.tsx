@@ -2,14 +2,17 @@ import {Genre} from "../hooks/useGenres.ts";
 import {ReactNode} from "react";
 import {Button, Heading, HStack, Image, List, ListItem} from "@chakra-ui/react";
 import getCroppedImage from "../services/image-url.ts";
+import useGameQueryStore, {GameQueryStore} from "../store.ts";
 
 interface Props {
-	genres: Genre[],
-	selectedGenreId?: number;
-	onSelectedGenre: (genre: Genre) => void;
+	genres: Genre[];
 }
 
-const GenreList = ({genres, selectedGenreId, onSelectedGenre}: Props) => {
+const GenreList = ({genres}: Props) => {
+	const selectedGenreId: number | undefined = useGameQueryStore((s: GameQueryStore): number | undefined => s.gameQuery.genreId);
+	const setSelectedGenreId = useGameQueryStore((s: GameQueryStore) => s.setGenreId);
+
+
 	return (
 		<>
 			<Heading fontSize="2xl" mb={3}>Genres</Heading>
@@ -28,7 +31,7 @@ const GenreList = ({genres, selectedGenreId, onSelectedGenre}: Props) => {
 								variant="link"
 								fontSize="lg"
 								fontWeight={selectedGenreId === genre.id ? "bold" : "normal"}
-								onClick={() => onSelectedGenre(genre)}>
+								onClick={() => setSelectedGenreId(genre.id)}>
 								{genre.name}
 							</Button>
 						</HStack>

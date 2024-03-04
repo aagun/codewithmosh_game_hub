@@ -1,4 +1,4 @@
-import usePlatforms, {Platform} from "./usePlatforms.tsx";
+import usePlatforms, {Platform} from "./usePlatforms.ts";
 import {UseQueryResult} from "@tanstack/react-query";
 import {RAWGResponse} from "../services/api-client.ts";
 

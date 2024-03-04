@@ -1,22 +1,25 @@
-import {useParams} from "react-router-dom";
+import {Params, useParams} from "react-router-dom";
 import useGame from "../hooks/useGame.tsx";
 import {Heading, Spinner} from "@chakra-ui/react";
 import {UseQueryResult} from "@tanstack/react-query";
 import {Game} from "../entities/Game.ts";
 import ExpandableText from "../components/ExpandableText.tsx";
+import {JSX} from "react";
+import GameAttributes from "../components/GameAttributes.tsx";
 
-const GameDetailPage = () => {
-	const {slug} = useParams();
-	const {data, error, isLoading}: UseQueryResult<Game, Error> = useGame(slug!);
+const GameDetailPage = (): JSX.Element => {
+	const {slug}: Params = useParams();
+	const {data: game, error, isLoading}: UseQueryResult<Game, Error> = useGame(slug!);
 
 	if (isLoading) return <Spinner/>
 
-	if (error || !data) throw new Error();
+	if (error || !game) throw new Error();
 
 	return (
 		<>
-			<Heading>{data.name}</Heading>
-			<ExpandableText>{data.description_raw}</ExpandableText>
+			<Heading>{game.name}</Heading>
+			<ExpandableText>{game.description_raw}</ExpandableText>
+			<GameAttributes game={game} />
 		</>
 	);
 };

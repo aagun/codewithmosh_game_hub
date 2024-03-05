@@ -2,8 +2,8 @@ import {JSX, ReactNode} from "react";
 import {Image, SimpleGrid, Spinner} from "@chakra-ui/react";
 import useScreenshots from "../hooks/useScreenshots.ts";
 import {UseQueryResult} from "@tanstack/react-query";
-import {RAWGResponse} from "../entities/RAWGResponse.ts";
-import {Screenshot} from "../entities/Screenshot.ts";
+import RAWGResponse from "../entities/RAWGResponse.ts";
+import Screenshot from "../entities/Screenshot.ts";
 
 interface Props {
 	gameId: number;

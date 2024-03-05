@@ -1,9 +1,9 @@
 import DefinitionItem from "./DefinitionItem.tsx";
 import {SimpleGrid, Text} from "@chakra-ui/react";
 import CriticScore from "./CriticScore.tsx";
-import {Genre} from "../entities/Genre.ts";
-import {Publisher} from "../entities/Publisher.ts";
-import {Game} from "../entities/Game.ts";
+import Genre from "../entities/Genre.ts";
+import Publisher from "../entities/Publisher.ts";
+import Game from "../entities/Game.ts";
 
 interface Props {
 	game: Game;

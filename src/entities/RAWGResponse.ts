@@ -1,4 +1,4 @@
-export interface RAWGResponse<T> {
+export default interface RAWGResponse<T> {
 	count: number;
 	results: T[];
 	next: string | null;

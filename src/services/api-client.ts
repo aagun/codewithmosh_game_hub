@@ -1,5 +1,5 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
-import {RAWGResponse} from "../entities/RAWGResponse.ts";
+import RAWGResponse from "../entities/RAWGResponse.ts";
 
 const axiosInstance: AxiosInstance =  axios.create({
 	baseURL: "https://api.rawg.io/api",

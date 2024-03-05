@@ -4,7 +4,7 @@ import {IconType} from "react-icons";
 import {FaApple, FaGlobe, FaLinux, FaPlaystation, FaWindows, FaXbox} from "react-icons/fa6";
 import {MdOutlineAndroid, MdOutlinePhoneIphone} from "react-icons/md";
 import {BsNintendoSwitch} from "react-icons/bs";
-import {Platform} from "../entities/Platform.ts";
+import Platform from "../entities/Platform.ts";
 
 interface Props {
 	platforms: Platform[];

@@ -6,8 +6,8 @@ import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import GameCardContainer from "./GameCardContainer.tsx";
 import {InfiniteData, UseInfiniteQueryResult} from "@tanstack/react-query";
 import {InViewHookResponse, useInView} from "react-intersection-observer";
-import {Game} from "../entities/Game.ts";
-import {RAWGResponse} from "../entities/RAWGResponse.ts";
+import Game from "../entities/Game.ts";
+import RAWGResponse from "../entities/RAWGResponse.ts";
 
 const GameGrid = (): JSX.Element => {
 	const {ref, inView}: InViewHookResponse = useInView();

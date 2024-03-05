@@ -3,8 +3,8 @@ import PlatformIconList from "./PlatformIconList.tsx";
 import CriticScore from "./CriticScore.tsx";
 import getCroppedImage from "../services/image-url.ts";
 import {Link} from "react-router-dom";
-import {Game} from "../entities/Game.ts";
-import {Platform} from "../entities/Platform.ts";
+import Game from "../entities/Game.ts";
+import Platform from "../entities/Platform.ts";
 
 interface Props {
 	game: Game;

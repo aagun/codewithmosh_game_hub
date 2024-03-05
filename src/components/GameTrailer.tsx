@@ -1,7 +1,7 @@
 import useTrailers from "../hooks/useTrailers.ts";
 import {UseQueryResult} from "@tanstack/react-query";
-import {RAWGResponse} from "../entities/RAWGResponse.ts";
-import {Trailer} from "../entities/Trailer.ts";
+import RAWGResponse from "../entities/RAWGResponse.ts";
+import Trailer from "../entities/Trailer.ts";
 import {Spinner} from "@chakra-ui/react";
 import {JSX} from "react";
 

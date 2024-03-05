@@ -2,7 +2,7 @@ import {Params, useParams} from "react-router-dom";
 import useGame from "../hooks/useGame.ts";
 import {GridItem, Heading, SimpleGrid, Spinner} from "@chakra-ui/react";
 import {UseQueryResult} from "@tanstack/react-query";
-import {Game} from "../entities/Game.ts";
+import Game from "../entities/Game.ts";
 import ExpandableText from "../components/ExpandableText.tsx";
 import {JSX} from "react";
 import GameAttributes from "../components/GameAttributes.tsx";

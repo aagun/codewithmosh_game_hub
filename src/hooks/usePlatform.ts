@@ -1,7 +1,7 @@
 import usePlatforms from "./usePlatforms.ts";
 import {UseQueryResult} from "@tanstack/react-query";
-import {RAWGResponse} from "../services/api-client.ts";
 import {Platform} from "../entities/Platform.ts";
+import {RAWGResponse} from "../entities/RAWGResponse.ts";
 
 const usePlatform = (id?: number): Platform | undefined => {
 	const {data: platforms}: UseQueryResult<RAWGResponse<Platform>> = usePlatforms();

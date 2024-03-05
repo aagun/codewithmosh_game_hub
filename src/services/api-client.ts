@@ -1,11 +1,5 @@
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
-
-export interface RAWGResponse<T> {
-	count: number;
-	results: T[];
-	next: string | null;
-	previous: string | null;
-}
+import {RAWGResponse} from "../entities/RAWGResponse.ts";
 
 const axiosInstance: AxiosInstance =  axios.create({
 	baseURL: "https://api.rawg.io/api",

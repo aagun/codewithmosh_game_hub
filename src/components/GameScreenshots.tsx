@@ -17,7 +17,7 @@ const GameScreenshots = ({gameId}: Props): JSX.Element => {
 	if (error) throw error;
 
 	return (
-		<SimpleGrid columns={{base: 1, md: 2}} spacing={2} my={5}>
+		<SimpleGrid columns={{base: 1, md: 2}} spacing={2}>
 			{data?.results.map((screenshot: Screenshot): ReactNode =>
 				<Image key={screenshot.id} src={screenshot.image} />
 			)}
